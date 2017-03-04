@@ -24,3 +24,5 @@ hs_err_pid*
 # Eclipse meta files
 .settings
 .project
+
+target

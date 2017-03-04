@@ -2,11 +2,11 @@ package br.com.lazarodm.movielist.api.service;
 
 import java.util.List;
 
-public class RestMovieService implements MovieService{
+public class MovieServiceImpl implements MovieService{
 
 	private List<String> movieStore;
 
-	public RestMovieService(List<String> movieStore){
+	public MovieServiceImpl(List<String> movieStore){
 		this.movieStore = movieStore;
 	}
 

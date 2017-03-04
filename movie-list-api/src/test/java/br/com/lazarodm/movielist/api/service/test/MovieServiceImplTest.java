@@ -6,15 +6,15 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
-import br.com.lazarodm.movielist.api.service.RestMovieService;
+import br.com.lazarodm.movielist.api.service.MovieServiceImpl;
 
-public class RestMovieServiceTest {
+public class MovieServiceImplTest {
 	private static final String MY_MOVIE = "My Movie";
 
 	@Test
 	public void addMovieCanAddToMovieStore(){
 		List<String> movieStore = new ArrayList<String>();
-		RestMovieService service = new RestMovieService(movieStore);
+		MovieServiceImpl service = new MovieServiceImpl(movieStore);
 
 		service.addMovie(MY_MOVIE);
 
