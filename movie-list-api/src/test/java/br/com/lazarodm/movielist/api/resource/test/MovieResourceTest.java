@@ -9,24 +9,25 @@ import org.junit.Test;
 
 import br.com.lazarodm.movielist.api.resource.MovieResource;
 import br.com.lazarodm.movielist.api.service.MovieService;
+import br.com.lazarodm.movielist.core.Movie;
 
 public class MovieResourceTest {
-	private static final String MOVIE_NAME = "Any Movie";
+	private static final Movie MOVIE = new Movie();
 	
-	private String savedMovie;
-	private List<String> movieList;
+	private Movie savedMovie;
+	private List<Movie> movieList;
 	
 	@Before
 	public void setUp(){
-		movieList = new ArrayList<String>();
+		movieList = new ArrayList<Movie>();
 	}
 	
 	@Test
 	public void save(){
 		MovieResource resource = new MovieResource(new MovieServiceStub());
-		resource.save(MOVIE_NAME);
+		resource.save(MOVIE);
 		
-		Assert.assertEquals(MOVIE_NAME, savedMovie);
+		Assert.assertEquals(MOVIE, savedMovie);
 	}
 	
 	@Test
@@ -37,11 +38,11 @@ public class MovieResourceTest {
 	}
 	
 	private class MovieServiceStub implements MovieService{		
-		public void addMovie(String movie) {
+		public void addMovie(Movie movie) {
 			MovieResourceTest.this.savedMovie = movie;
 		}
 		
-		public List<String> list() {
+		public List<Movie> list() {
 			return movieList;
 		}
 	}

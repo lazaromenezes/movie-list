@@ -9,6 +9,7 @@
   <description>Movie List</description>
   <modules>
     <module>movie-list-api</module>
+    <module>movie-list-core</module>
   </modules>
   
   <build>
