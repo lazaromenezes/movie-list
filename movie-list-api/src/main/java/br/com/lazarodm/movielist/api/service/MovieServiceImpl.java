@@ -13,5 +13,8 @@ public class MovieServiceImpl implements MovieService{
 	public void addMovie(String movie) {
 		movieStore.add(movie);
 	}
-
+	
+	public List<String> list(){
+		return this.movieStore;
+	}
 }

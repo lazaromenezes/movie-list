@@ -12,12 +12,22 @@ public class MovieServiceImplTest {
 	private static final String MY_MOVIE = "My Movie";
 
 	@Test
-	public void addMovieCanAddToMovieStore(){
+	public void addMovie(){
 		List<String> movieStore = new ArrayList<String>();
 		MovieServiceImpl service = new MovieServiceImpl(movieStore);
 
 		service.addMovie(MY_MOVIE);
 
 		Assert.assertEquals(MY_MOVIE, movieStore.get(0));
+	}
+	
+	@Test
+	public void list(){
+		List<String> movieStore = new ArrayList<String>();
+		MovieServiceImpl service = new MovieServiceImpl(movieStore);
+
+		List<String> movies = service.list();
+
+		Assert.assertEquals(movieStore, movies);		
 	}
 }
