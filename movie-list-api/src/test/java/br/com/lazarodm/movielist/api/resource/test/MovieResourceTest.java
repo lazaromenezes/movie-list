@@ -13,14 +13,15 @@ public class MovieResourceTest {
 	
 	@Test
 	public void save(){
-		
-		MovieResource resource = new MovieResource(new MovieService() {
-			public void addMovie(String movie) {
-				MovieResourceTest.this.savedMovie = movie;
-			}
-		});
+		MovieResource resource = new MovieResource(new MovieServiceStub());
 		resource.save(MOVIE_NAME);
 		
 		Assert.assertEquals(MOVIE_NAME, savedMovie);
+	}
+	
+	private class MovieServiceStub implements MovieService{		
+		public void addMovie(String movie) {
+			MovieResourceTest.this.savedMovie = movie;
+		}	
 	}
 }
