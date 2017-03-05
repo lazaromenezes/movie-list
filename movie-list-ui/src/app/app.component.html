@@ -1,16 +1,15 @@
 <div class='container'>
   <h1>Movie List</h1>
   <div class='row'>
-    <input class='ten columns' type='movie-title'/>
+    <input #titleText [value]='title' (blur)='title=titleText.value' class='ten columns' type='movie-title'/>
     <div class='one column'>
-      <button class='button-primary'>Save</button>
+      <button (click)='save()' class='button-primary'>Save</button>
     </div>
   </div>
   <div class='row'>
     <div class='twelve columns'>
       <ul>
-        <li>Rambo</li>
-        <li>Dumbo</li>
+        <li *ngFor='let movie of movies'>{{movie.title}}</li>
       </ul>
     </div>
   </div>
