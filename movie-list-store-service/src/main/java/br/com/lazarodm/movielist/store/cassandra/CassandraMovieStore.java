@@ -3,7 +3,9 @@ package br.com.lazarodm.movielist.store.cassandra;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.datastax.driver.core.Cluster;
+import javax.inject.Inject;
+import javax.inject.Provider;
+
 import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Row;
 import com.datastax.driver.core.Session;
@@ -19,9 +21,9 @@ public class CassandraMovieStore implements MovieStore {
 
 	private Session session;
 	
-	public CassandraMovieStore(){
-		final Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1").build();
-		session = cluster.connect();
+	@Inject
+	public CassandraMovieStore(Provider<Session> sessionProvider){
+		this.session = sessionProvider.get();
 	}
 	
 	@Override
