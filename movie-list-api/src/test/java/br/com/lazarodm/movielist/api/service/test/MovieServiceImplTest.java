@@ -1,9 +1,12 @@
 package br.com.lazarodm.movielist.api.service.test;
 
-import java.util.ArrayList;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+
 import java.util.List;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import br.com.lazarodm.movielist.api.service.MovieServiceImpl;
@@ -11,23 +14,25 @@ import br.com.lazarodm.movielist.core.Movie;
 
 public class MovieServiceImplTest {
 	private static final Movie MY_MOVIE = new Movie();
+	private List<Movie> movieStore;
+	private MovieServiceImpl target;
 
+	@Before
+	public void setup(){
+		movieStore = mock(List.class);
+		target = new MovieServiceImpl(movieStore);
+	}
+	
 	@Test
 	public void addMovie(){
-		List<Movie> movieStore = new ArrayList<Movie>();
-		MovieServiceImpl service = new MovieServiceImpl(movieStore);
+		target.addMovie(MY_MOVIE);
 
-		service.addMovie(MY_MOVIE);
-
-		Assert.assertEquals(MY_MOVIE, movieStore.get(0));
+		verify(movieStore).add(MY_MOVIE);
 	}
 	
 	@Test
 	public void list(){
-		List<Movie> movieStore = new ArrayList<Movie>();
-		MovieServiceImpl service = new MovieServiceImpl(movieStore);
-
-		List<Movie> movies = service.list();
+		List<Movie> movies = target.list();
 
 		Assert.assertEquals(movieStore, movies);		
 	}

@@ -1,6 +1,5 @@
 package br.com.lazarodm.movielist.api.resource.test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Assert;
@@ -11,39 +10,36 @@ import br.com.lazarodm.movielist.api.resource.MovieResource;
 import br.com.lazarodm.movielist.api.service.MovieService;
 import br.com.lazarodm.movielist.core.Movie;
 
+import static org.mockito.Mockito.*;
+
 public class MovieResourceTest {
-	private static final Movie MOVIE = new Movie();
-	
-	private Movie savedMovie;
-	private List<Movie> movieList;
+	private MovieService movieService;
+	private List<Movie> mockList;
+	private MovieResource target;
 	
 	@Before
 	public void setUp(){
-		movieList = new ArrayList<Movie>();
+		mockList = (List<Movie>) mock(List.class);
+		movieService = mock(MovieService.class);
+		
+		when(movieService.list()).thenReturn(mockList);
+		
+		target = new MovieResource(movieService);
 	}
 	
 	@Test
 	public void save(){
-		MovieResource resource = new MovieResource(new MovieServiceStub());
-		resource.save(MOVIE);
+		Movie movie = new Movie();
 		
-		Assert.assertEquals(MOVIE, savedMovie);
+		target.save(movie);
+		
+		verify(movieService).addMovie(movie);
 	}
 	
 	@Test
 	public void list(){
-		MovieResource resource = new MovieResource(new MovieServiceStub());
+		List<Movie> actualList = target.list();
 		
-		Assert.assertEquals(movieList, resource.list());
-	}
-	
-	private class MovieServiceStub implements MovieService{		
-		public void addMovie(Movie movie) {
-			MovieResourceTest.this.savedMovie = movie;
-		}
-		
-		public List<Movie> list() {
-			return movieList;
-		}
+		Assert.assertEquals(mockList, actualList);
 	}
 }
