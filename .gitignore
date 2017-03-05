@@ -29,3 +29,18 @@ target
 */target
 
 */.classpath
+
+## UI
+#
+movie-list-ui/node_modules
+movie-list-ui/jspm_packages
+movie-list-ui/npm-debug.log
+movie-list-ui/debug.log
+movie-list-ui/src/**/*.js
+movie-list-ui/!src/systemjs.config.extras.js
+movie-list-ui/!src/systemjs.config.js
+movie-list-ui/**/*.js.map
+movie-list-ui/e2e/**/*.js
+movie-list-ui/e2e/**/*.js.map
+movie-list-ui/_test-output
+movie-list-ui/_temp
