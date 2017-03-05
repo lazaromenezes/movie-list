@@ -10,6 +10,7 @@
   <modules>
     <module>movie-list-api</module>
     <module>movie-list-core</module>
+    <module>movie-list-store-service</module>
   </modules>
   
   <build>
