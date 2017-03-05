@@ -1,4 +1,4 @@
-package br.com.lazarodm.movielist.store.resource.test;
+package br.com.lazarodm.movielist.store.service.test;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -11,22 +11,23 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.com.lazarodm.movielist.core.Movie;
-import br.com.lazarodm.movielist.store.resource.MovieStoreResource;
-import br.com.lazarodm.movielist.store.service.MovieStoreService;
+import br.com.lazarodm.movielist.store.MovieStore;
+import br.com.lazarodm.movielist.store.service.MovieStoreServiceImpl;
 
-public class MovieStoreResourceTest {
-	private MovieStoreService service;
-	private MovieStoreResource target;
+
+public class MovieStoreServiceImplTest {
 	private List<Movie> mockList;
+	private MovieStore store;
+	private MovieStoreServiceImpl target;
 
 	@Before
 	public void setup(){
 		mockList = mock(List.class);
 		
-		service = mock(MovieStoreService.class);
-		when(service.getAll()).thenReturn(mockList);
+		store = mock(MovieStore.class);
+		when(store.getAll()).thenReturn(mockList);
 		
-		target = new MovieStoreResource(service);
+		target = new MovieStoreServiceImpl(store);
 	}
 	
 	@Test
@@ -35,12 +36,12 @@ public class MovieStoreResourceTest {
 		
 		target.save(movie);
 		
-		verify(service).save(movie);
+		verify(store).save(movie);
 	}
 	
 	@Test
 	public void list(){
-		List<Movie> actualList = target.list();
+		List<Movie> actualList = target.getAll();
 		
 		Assert.assertEquals(mockList, actualList);
 	}

@@ -1,16 +1,10 @@
 package br.com.lazarodm.movielist.store.service;
 
-import br.com.lazarodm.movielist.core.Movie;
-import br.com.lazarodm.movielist.store.MovieStore;
+import java.util.List;
 
-public class MovieStoreService {
-	private final MovieStore store;
-	
-	public MovieStoreService(MovieStore store){
-		this.store = store;
-	}
-	
-	public void save(Movie movie){
-		this.store.save(movie);
-	}
+import br.com.lazarodm.movielist.core.Movie;
+
+public interface MovieStoreService {
+	void save(Movie movie);
+	List<Movie> getAll();
 }
