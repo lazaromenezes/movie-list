@@ -2,21 +2,25 @@ package br.com.lazarodm.movielist.api.service;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import br.com.lazarodm.movielist.core.Movie;
+import br.com.lazarodm.movielist.store.service.client.MovieStoreServiceClient;
 
 public class MovieServiceImpl implements MovieService{
 
-	private List<Movie> movieStore;
+	private MovieStoreServiceClient movieClient;
 
-	public MovieServiceImpl(List<Movie> movieStore){
-		this.movieStore = movieStore;
+	@Inject
+	public MovieServiceImpl(MovieStoreServiceClient movieClient){
+		this.movieClient = movieClient;
 	}
 
 	public void addMovie(Movie movie) {
-		movieStore.add(movie);
+		movieClient.save(movie);
 	}
 	
 	public List<Movie> list(){
-		return this.movieStore;
+		return this.movieClient.getAll();
 	}
 }
