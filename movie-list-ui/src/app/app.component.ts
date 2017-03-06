@@ -19,7 +19,10 @@ export class AppComponent implements OnInit {
       title: this.title
     }
 
-    this.client.save(movie).subscribe(result => this.loadMovies())
+    this.client.save(movie).subscribe(result => {
+      this.loadMovies()
+      this.title = ''
+    })
   }
 
   ngOnInit() {
