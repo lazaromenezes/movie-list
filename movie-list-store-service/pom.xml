@@ -100,5 +100,10 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<resources>
+			<resource>
+				<directory>${project.basedir}/src/cassandra</directory>
+			</resource>
+		</resources>
 	</build>
 </project>
