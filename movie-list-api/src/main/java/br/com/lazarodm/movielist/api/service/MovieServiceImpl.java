@@ -4,12 +4,12 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import br.com.lazarodm.movielist.core.Movie;
 import br.com.lazarodm.movielist.store.service.client.MovieStoreServiceClient;
 
-@Component
+@Service
 public class MovieServiceImpl implements MovieService{
 
 	private MovieStoreServiceClient movieClient;
@@ -19,10 +19,12 @@ public class MovieServiceImpl implements MovieService{
 		this.movieClient = movieClient;
 	}
 
+	@Override
 	public void addMovie(Movie movie) {
 		movieClient.save(movie);
 	}
 	
+	@Override
 	public List<Movie> list(){
 		return this.movieClient.getAll();
 	}
