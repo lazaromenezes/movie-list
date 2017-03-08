@@ -11,9 +11,14 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import br.com.lazarodm.movielist.api.service.MovieService;
 import br.com.lazarodm.movielist.core.Movie;
 
+@Component
 @Path("/movie")
 public class MovieResource {
 	private MovieService movieService;

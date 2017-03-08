@@ -4,9 +4,12 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.stereotype.Component;
+
 import br.com.lazarodm.movielist.core.Movie;
 import br.com.lazarodm.movielist.store.service.client.MovieStoreServiceClient;
 
+@Component
 public class MovieServiceImpl implements MovieService{
 
 	private MovieStoreServiceClient movieClient;
