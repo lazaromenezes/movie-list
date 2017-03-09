@@ -3,8 +3,8 @@ package br.com.lazarodm.movielist.store.cassandra;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-import javax.inject.Provider;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Row;
@@ -17,13 +17,14 @@ import com.datastax.driver.core.utils.UUIDs;
 import br.com.lazarodm.movielist.core.Movie;
 import br.com.lazarodm.movielist.store.MovieStore;
 
+@Service
 public class CassandraMovieStore implements MovieStore {
 
 	private Session session;
 	
-	@Inject
-	public CassandraMovieStore(Provider<Session> sessionProvider){
-		this.session = sessionProvider.get();
+	@Autowired
+	public CassandraMovieStore(Session session){
+		this.session = session;
 	}
 	
 	@Override

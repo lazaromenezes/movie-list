@@ -21,12 +21,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.glassfish.jersey.ext</groupId>
-			<artifactId>jersey-spring3</artifactId>
-			<version>2.25.1</version>
-		</dependency>
-
-		<dependency>
 			<groupId>br.com.lazarodm</groupId>
 			<artifactId>movie-list-core</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
@@ -51,15 +45,13 @@
 		</dependency>
 	</dependencies>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
+	<build>
+		<plugins>
+			<plugin>
 				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-dependencies</artifactId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
 				<version>1.5.2.RELEASE</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+			</plugin>
+		</plugins>
+	</build>
 </project>

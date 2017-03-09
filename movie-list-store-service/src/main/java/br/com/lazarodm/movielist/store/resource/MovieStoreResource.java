@@ -2,34 +2,31 @@ package br.com.lazarodm.movielist.store.resource;
 
 import java.util.List;
 
-import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import br.com.lazarodm.movielist.core.Movie;
 import br.com.lazarodm.movielist.store.service.MovieStoreService;
 
-@Path("/movie")
+@RestController
+@RequestMapping(value="/movie")
 public class MovieStoreResource {
 	private final MovieStoreService storeService;
 	
-	@Inject
+	@Autowired
 	public MovieStoreResource(MovieStoreService service){
 		this.storeService = service;
 	}
 	
-	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	public void save(Movie movie){
+	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
+	public void save(@RequestBody Movie movie){
 		this.storeService.save(movie);
 	}
 	
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
+	@RequestMapping(method=RequestMethod.GET, produces="application/json")
 	public List<Movie> list(){
 		return this.storeService.getAll();
 	}
