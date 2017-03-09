@@ -42,7 +42,7 @@ public class CassandraMovieStore implements MovieStore {
 		
 		ResultSet resultSet = session.execute(select);
 		
-		List<Movie> movies = new ArrayList<Movie>();
+		List<Movie> movies = new ArrayList<>();
 		
 		for(Row row: resultSet.all())
 			movies.add(createMovieFromRow(row));

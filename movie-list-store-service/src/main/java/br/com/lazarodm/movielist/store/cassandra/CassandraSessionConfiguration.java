@@ -1,5 +1,6 @@
 package br.com.lazarodm.movielist.store.cassandra;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -8,9 +9,11 @@ import com.datastax.driver.core.Session;
 
 @Configuration
 public class CassandraSessionConfiguration {
+	@Value("${cassandra.contactPoint}")
+	private String contactPoint;
+	
 	@Bean
 	public Session getSession(){
-		final String contactPoint = "127.0.0.1";
 		return Cluster.builder().addContactPoint(contactPoint).build().connect();
 	}
 }
