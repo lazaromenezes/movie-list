@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import com.datastax.driver.core.ResultSet;
@@ -18,6 +19,7 @@ import br.com.lazarodm.movielist.core.Movie;
 import br.com.lazarodm.movielist.store.MovieStore;
 
 @Service
+@Profile("cassandra")
 public class CassandraMovieStore implements MovieStore {
 
 	private Session session;

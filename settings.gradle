@@ -1,0 +1,10 @@
+rootProject.name = 'movie-list'
+include ':movie-list-api'
+include ':movie-list-core'
+include ':movie-list-store-service'
+include ':movie-list-store-service-client'
+
+project(':movie-list-api').projectDir = "$rootDir/movie-list-api" as File
+project(':movie-list-core').projectDir = "$rootDir/movie-list-core" as File
+project(':movie-list-store-service').projectDir = "$rootDir/movie-list-store-service" as File
+project(':movie-list-store-service-client').projectDir = "$rootDir/movie-list-store-service-client" as File
