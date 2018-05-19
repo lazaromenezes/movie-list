@@ -22,6 +22,11 @@ import br.com.lazarodm.movielist.store.MovieStore;
 @Profile("cassandra")
 public class CassandraMovieStore implements MovieStore {
 
+	private final String KEYSPACE = "MovieListKeySpace";
+	private final String TABLE = "Movie";
+	private final String KEY_FIELD = "key";
+	private final String TITLE_FIELD = "title";
+
 	private Session session;
 	
 	@Autowired
@@ -31,16 +36,16 @@ public class CassandraMovieStore implements MovieStore {
 	
 	@Override
 	public void save(Movie movie) {
-		Insert insert = QueryBuilder.insertInto("MovieListKeySpace", "Movie")
-									.value("key", UUIDs.timeBased())
-									.value("title", movie.getTitle());
+		Insert insert = QueryBuilder.insertInto(KEYSPACE, TABLE)
+									.value(KEY_FIELD, UUIDs.timeBased())
+									.value(TITLE_FIELD, movie.getTitle());
 		
 		session.execute(insert);
 	}
 
 	@Override
 	public List<Movie> getAll() {
-		Select select = QueryBuilder.select().from("MovieListKeySpace", "Movie");
+		Select select = QueryBuilder.select().from(KEYSPACE, TABLE);
 		
 		ResultSet resultSet = session.execute(select);
 		
@@ -54,8 +59,7 @@ public class CassandraMovieStore implements MovieStore {
 	
 	private Movie createMovieFromRow(Row row){
 		Movie movie = new Movie();
-		movie.setTitle(row.getString("title"));
+		movie.setTitle(row.getString(TITLE_FIELD));
 		return movie;
 	}
-
 }
