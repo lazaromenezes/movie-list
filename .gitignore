@@ -38,6 +38,9 @@ build
 */build
 
 */.classpath
+.classpath
+
+.vscode
 
 ## UI
 #
@@ -53,4 +56,5 @@ movie-list-ui/e2e/**/*.js
 movie-list-ui/e2e/**/*.js.map
 movie-list-ui/_test-output
 movie-list-ui/_temp
+
 

@@ -9,3 +9,8 @@ dependencies {
   testCompile group: 'junit', name: 'junit', version:'4.11'
   testCompile group: 'org.mockito', name: 'mockito-core', version:'2.7.13'
 }
+
+bootRun {
+  environment.API_PORT = environment.API_PORT ?: '8080'
+  environment.STORE_SERVICE_PORT = environment.STORE_SERVICE_PORT ?: '8090'
+}

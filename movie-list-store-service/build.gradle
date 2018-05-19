@@ -12,6 +12,6 @@ dependencies {
 
 bootRun {
   environment.SPRING_PROFILES_ACTIVE = environment.PROFILE ?: 'inmemory'
-  
-  println "USING PROFILE: " + environment.SPRING_PROFILES_ACTIVE;
+  environment.STORE_SERVICE_PORT = environment.STORE_SERVICE_PORT ?: '8090'
+  environment.CASSANDRA_CONTACT_POINT = environment.CASSANDRA_CONTACT_POINT ?: '172.17.0.2'
 }
