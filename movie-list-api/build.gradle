@@ -12,5 +12,5 @@ dependencies {
 
 bootRun {
   environment.API_PORT = environment.API_PORT ?: '8080'
-  environment.STORE_SERVICE_PORT = environment.STORE_SERVICE_PORT ?: '8090'
+  environment.STORE_SERVICE_API = environment.STORE_SERVICE_API ?: "http://localhost:8090"
 }
