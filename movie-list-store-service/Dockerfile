@@ -7,7 +7,7 @@ COPY ./build/libs/movie-list-store-service.jar /opt/movie-list/movie-list-store-
 
 WORKDIR /opt/movie-list
 
-ENV STORE_SERVICE_PORT=$SERVICE_PORT:
+ENV STORE_SERVICE_PORT=$SERVICE_PORT
 ENV CASSANDRA_CONTACT_POINT=0.0.0.0
 ENV SPRING_PROFILES_ACTIVE=inmemory
 
