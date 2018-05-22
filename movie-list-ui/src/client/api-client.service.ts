@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map'
 
 @Injectable()
 export class MovieListApiClient {
-  private URL = 'http://localhost:8080/api/movie'
+  private URL = process.env.API_URL || 'http://localhost:8080/api/movie'
 
   constructor(private http: Http) {
   }
