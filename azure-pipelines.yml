@@ -37,7 +37,7 @@ jobs:
   - task: Npm@1
     inputs:
       command: 'custom'
-      customCommand: 'build'
+      customCommand: 'run build'
       workingDir: 'movie-list-ui'
   - task: Npm@1
     inputs:
