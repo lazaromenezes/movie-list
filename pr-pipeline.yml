@@ -1,0 +1,43 @@
+trigger: none
+
+pr:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+jobs:
+- job: Backend
+  steps:
+  - task: Gradle@2
+    name: 'Gradle Build & Test'
+    inputs:
+      gradleWrapperFile: 'gradlew'
+      gradleOptions: '-Xmx3072m'
+      tasks: 'build'
+      publishJUnitResults: true
+      testResultsFiles: '**/TEST-*.xml'
+      codeCoverageToolOption: 'Cobertura'
+      javaHomeOption: 'JDKVersion'
+      sonarQubeRunAnalysis: false
+      checkStyleRunAnalysis: true
+
+- job: FrontEnd
+  steps:
+  - task: Npm@1
+    name: 'npm install'
+    inputs:
+      command: 'install'
+      workingDir: 'movie-list-ui'
+  - task: Npm@1
+    name: 'npm run build'
+    inputs:
+      command: 'custom'
+      customCommand: 'run build'
+      workingDir: 'movie-list-ui'
+  - task: Npm@1
+    name: 'npm test'
+    inputs:
+      command: 'custom'
+      customCommand: 'test'
+      workingDir: 'movie-list-ui'

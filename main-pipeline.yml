@@ -1,3 +1,5 @@
+pr: none
+
 trigger:
 - master
 
@@ -8,6 +10,7 @@ jobs:
 - job: Backend
   steps:
   - task: Gradle@2
+    name: 'Gradle Build & Test'
     inputs:
       gradleWrapperFile: 'gradlew'
       gradleOptions: '-Xmx3072m'
@@ -19,10 +22,12 @@ jobs:
       sonarQubeRunAnalysis: false
       checkStyleRunAnalysis: true
   - task: CopyFiles@2
+    name: 'Copy binaries to staging directory'
     inputs:
       Contents: '**/movie*.jar'
       TargetFolder: '$(Build.ArtifactStagingDirectory)'
   - task: PublishBuildArtifacts@1
+    name: 'Publish artifacts'
     inputs:
       PathtoPublish: '$(Build.ArtifactStagingDirectory)'
       ArtifactName: 'drop'
@@ -31,24 +36,29 @@ jobs:
 - job: FrontEnd
   steps:
   - task: Npm@1
+    name: 'npm install'
     inputs:
       command: 'install'
       workingDir: 'movie-list-ui'
   - task: Npm@1
+    name: 'npm run build'
     inputs:
       command: 'custom'
       customCommand: 'run build'
       workingDir: 'movie-list-ui'
   - task: Npm@1
+    name: 'npm test'
     inputs:
       command: 'custom'
       customCommand: 'test'
       workingDir: 'movie-list-ui'
   - task: CopyFiles@2
+    name: 'Copy dist files'
     inputs:
       Contents: 'movie-list-ui/dist/**/*'
       TargetFolder: '$(Build.ArtifactStagingDirectory)/ui'
   - task: PublishBuildArtifacts@1
+    name: 'Publish artifacts'
     inputs:
       PathtoPublish: '$(Build.ArtifactStagingDirectory)'
       ArtifactName: 'drop-ui'
