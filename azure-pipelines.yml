@@ -22,6 +22,10 @@ steps:
     javaHomeOption: 'JDKVersion'
     sonarQubeRunAnalysis: false
     checkStyleRunAnalysis: true
+- task: CopyFiles@2
+  inputs:
+    Contents: '**/movie*.jar'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
