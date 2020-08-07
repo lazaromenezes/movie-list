@@ -46,5 +46,10 @@ jobs:
       workingDir: 'movie-list-ui'
   - task: CopyFiles@2
     inputs:
-      Contents: 'movie-list-ui/dist'
+      Contents: 'movie-list-ui/dist/**/*'
       TargetFolder: '$(Build.ArtifactStagingDirectory)/ui'
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      ArtifactName: 'drop-ui'
+      publishLocation: 'Container'
