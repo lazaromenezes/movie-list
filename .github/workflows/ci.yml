@@ -13,8 +13,7 @@ name: Java CI with Gradle
 on:
   push:
     branches: [ $default-branch ] # main branch set on repository settings
-
-  workflow_dispatch
+  workflow_dispatch:
 
 jobs:
   build:
