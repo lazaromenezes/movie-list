@@ -1,19 +1,11 @@
 # This workflow will build a Java project with Gradle
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle
 
-
-# curl \
-#  -X POST \
-#  -H "Accept: application/vnd.github.v3+json" \
-#  https://api.github.com/repos/octocat/hello-world/actions/workflows/42/dispatches \
-#  -d '{"ref":"ref"}'
-
 name: Java CI with Gradle
 
 on:
   push:
     branches: [ $default-branch ] # main branch set on repository settings
-  workflow_dispatch:
 
 jobs:
   build:
