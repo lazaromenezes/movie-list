@@ -1,0 +1,24 @@
+version: "3.8"
+services:
+  web:
+    build: ./movie-list-ui
+    ports:
+      - "8888:80"
+    environment:
+      - API_URL="http://api/api/movie"
+    depends_on:
+      - api
+  api:
+    build: ./movie-list-api
+    environment:
+      - STORE_SERVICE_API=http://store 
+    ports:
+      - "8080:80"
+    depends_on:
+      - store
+  store:
+    build: ./movie-list-store-service
+    ports:
+      - "8887:80"
+    environment:
+      - SPRING_PROFILES_ACTIVE=inmemory
